@@ -1,0 +1,30 @@
+$custom-red: #d71e1e;
+$cutom-white: #ffffff;
+
+.chatAI-Btn {
+  background: $custom-red;
+  width: 100%;
+  height: 5.3rem;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  color: $cutom-white;
+  border: none;
+
+  &:hover {
+    background: #000 !important;
+    color: $cutom-white !important;
+  }
+  &:active {
+    transform: translateZ(10%) !important;
+  }
+}
+
+.secondary-btn {
+  background: $custom-red;
+  width: 100%;
+  height: 4rem;
+  border-radius: 1rem;
+  font-size: 1.3rem;
+  color: $cutom-white;
+  border: none;
+}

@@ -1,0 +1,53 @@
+$white: #ffffff;
+$light-gray: #878787;
+$gray: #292929;
+$custom-black: #202020;
+$custom-red: #d71e1e;
+
+.textInput {
+  color: $white !important;
+  background: black !important;
+  &:active {
+    border: none !important;
+  }
+  &::placeholder {
+    color: $white !important;
+  }
+  &:hover {
+    border: none !important;
+  }
+}
+
+.bot {
+  //   display: none;
+  background: $custom-red;
+  padding: 2rem;
+  font-size: 1.4rem;
+  max-width: 70%;
+  height: fit-content;
+  border-radius: 1rem 1rem 1rem 0;
+}
+
+@media (min-width: 768px) {
+  .bot {
+    background: transparent;
+  }
+}
+
+.human {
+  background: $gray;
+  align-self: flex-end;
+  padding: 2rem;
+  font-size: 1.4rem;
+  max-width: 60%;
+  height: fit-content;
+  border-radius: 1rem 1rem 0 1rem;
+}
+
+.blurrBG {
+  backdrop-filter: blur(0.2rem);
+}
+
+.greetings {
+  text-shadow: 2px 2px $custom-red;
+}
