@@ -25,10 +25,6 @@ export const randomQuestions = [
 function Chat() {
   const { t } = useTranslation();
   const chatRef = useRef();
-  const authorization = "";
-  const organisationID = "";
-  // const [audioUrl, setAudioUrl] = useState("");
-  // const [audioText, setAudioText] = useState(" Hello there, my name is famak");
   const [chatMessage, setChatMessage] = useState("");
 
   const loading = useSelector((state) => state.auth.isLoading);
@@ -76,9 +72,6 @@ function Chat() {
 
       <div className=" relative h-fit w-full rounded-t-[2rem] bg-charcoal-gray px-[2rem] mobile:px-[1rem] py-[2.5rem] mobile:py-[1.5rem] ">
         <Suggestions />
-        {/* <audio controls>
-          <source src={audioUrl} type="audio/mp3" />
-        </audio> */}
         <Form
           method="POST"
           onSubmit={() => handleSubmit()}

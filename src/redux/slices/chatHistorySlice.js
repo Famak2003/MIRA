@@ -28,9 +28,10 @@ const chatHistorySlice = createSlice({
   initialState,
   reducers: {
     setTodayChat: (state, action) => {
+      const tempChat = state.todayChat;
       state.todayChat = [
-        ...state.todayChat,
         { title: action.payload.title, chat: [...action.payload.newChat] },
+        ...state.todayChat,
       ];
     },
     setWeeklyChat: (state, action) => {

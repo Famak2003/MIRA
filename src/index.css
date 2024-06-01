@@ -38,6 +38,10 @@ body {
   background-color: var(--blue);
 }
 
+.blurrBG {
+  backdrop-filter: blur(0.2rem);
+}
+
 @layer components {
   .generalPadding {
     @apply px-[2rem];

@@ -3,7 +3,6 @@ import DOTTEDMENU from "./../../assets/dotted-menu.png";
 import LOGOUT from "./../../assets/logout.png";
 import { useEffect, useRef, useState } from "react";
 import { useHandleLogout } from "../../hooks/useHandleLogout";
-import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 import Translator from "../../components/ui/Translator";
 

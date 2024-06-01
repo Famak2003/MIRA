@@ -10,22 +10,20 @@ function LandingPage() {
     <>
       <Translator />
 
-      <div className=" h-[100svh] mobile:h-[100vh] flex flex-col justify-center items-center bg-transparent pb-[2%]  ">
-        <figure className="h-[63%] w-full mb-[3rem] ">
+      <div className=" h-[100svh] mobile:h-[100vh] flex flex-col gap-4 justify-center items-center bg-transparent  ">
+        <figure className="h-[63%] w-full ">
           <img
             className=" h-full w-full object-cover "
             src={LANDING}
             alt="landing-page"
           />
         </figure>
-        <div className=" flex flex-col gap-[2rem] justify-center h-[40%] items-center text-center generalPadding max-w-[80rem] ">
+        <div className=" flex flex-col gap-[2rem] justify-center h-[35%] items-center text-center generalPadding max-w-[80rem] ">
           <h1 className=" font-bold text-[2.4rem] ">
             {t("LANDING_PAGE_HEADER")}
           </h1>
           <p className=" text-[1.1rem]">{t("LANDING_PAGE_BODY")}</p>
-          <p className=" text-[1.1rem]">
-            <br />
-          </p>
+
           <div className=" w-full">
             <NavLink to={"/auth/login"}>
               <Primary>{t("GET_STARTED")}</Primary>

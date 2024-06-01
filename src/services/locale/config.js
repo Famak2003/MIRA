@@ -77,6 +77,8 @@ i18n
           LOGOUT: `Logout`,
           CHAT_HISTORY: `Chat History`,
           LANGUAGE: `language`,
+          RECENTLY: `Recently`,
+          LONG_TIME_AGO: `Long time ago`,
         },
       },
       tr: {
@@ -106,6 +108,8 @@ i18n
           LOGOUT: `çıkış Yap`,
           CHAT_HISTORY: `Sohbet geçmişi`,
           LANGUAGE: `Dil`,
+          RECENTLY: `son zamanlarda`,
+          LONG_TIME_AGO: `Uzun zaman önce`,
         },
       },
     },

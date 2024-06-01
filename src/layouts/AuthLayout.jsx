@@ -25,7 +25,7 @@ function Auth() {
   const [currentPage] = Hooks.useGetCurrentPage();
   const [pageContent, setPageContent] = useState({});
   const [error, setError] = useState("");
-  const isLoading = useSelector((state) => state.auth.isLoading);
+  // const isLoading = useSelector((state) => state.auth.isLoading);
   const handleGoogleSignin = async (e) => {
     e.preventDefault();
     try {
@@ -45,7 +45,7 @@ function Auth() {
 
   async function handleLogin(value, error, setError) {
     // const login = useSelector((state)=> state.auth.login)
-    console.log(value);
+    // console.log(value);
     setError("");
     try {
       dispatch(setIsLoading(true));

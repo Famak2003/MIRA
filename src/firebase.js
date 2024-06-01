@@ -8,7 +8,7 @@ import { getAuth } from "firebase/auth";
 // web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "org-mk0BjA4s4LgQOlOhxMItyqEr",
+  apiKey: process.env.REACT_APP_FIRE_KEY,
   authDomain: "mira-8841b.firebaseapp.com",
   projectId: "mira-8841b",
   storageBucket: "mira-8841b.appspot.com",

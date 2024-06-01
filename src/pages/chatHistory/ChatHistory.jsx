@@ -1,7 +1,7 @@
 import "./chatHistory.scss";
 
 import * as Button from "../../components/Buttons";
-import ChatHistoryElement from "./../../components/ui/ChatHistoryElement";
+import ChatHistoryElement from "../../components/ui/ChatHistoryElement";
 import { Link } from "react-router-dom";
 
 function Home() {
