@@ -8,36 +8,41 @@ import LOGOUT from "./../../assets/logout.png";
 import { motion } from "framer-motion";
 import { selectionVariant } from "../../effect";
 import { useDispatch, useSelector } from "react-redux";
-import { setTodayChat } from "../../redux/slices/chatHistorySlice";
-import { resetCurrentChat } from "../../redux/slices/currentChatSlice";
+import { resetHistory } from "../../redux/slices/chatHistorySlice";
+
 import { useTranslation } from "react-i18next";
 import Translator from "../../components/ui/Translator";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { resetDisplayMenu } from "../../redux/slices/homeSlice";
-// import { resetDisplayMenu } from "../../redux/slices/homeSlice";
+import generateTitle from "../../utilities/generateTitle";
+import useAddNewChat from "../../hooks/useAddNewChat";
 
-export function Menu() {
-  const { t } = useTranslation();
+export function Menu({ setShowMenu }) {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const [isLangON, setIsLangON] = useState(false);
-  const [recentChat, setRecentChat] = useState([]);
-  const [longTimeAgo, setLongTimeAgo] = useState([]);
+  const [recentChat, setRecentChat] = useState();
+  const [longTimeAgo, setLongTimeAgo] = useState();
+  const [isHistoryCleared, setIsHistoryCleared] = useState();
   const currentChat = useSelector((state) => state.currentChat.currentChat);
-  const todayChat = useSelector((state) => state.chatHistory.todayChat);
+  const history = useSelector((state) => state.chatHistory.history);
+  const revisitTitle = useSelector((state) => state.currentChat.revistTitle);
+
+  // custom hook
+  const addNewChatToHistory = useAddNewChat();
+
   const handleLogout = useHandleLogout();
 
-  // adds present chat to today's history
+  // adds present chat to the history
   const handleNewChat = () => {
-    if (currentChat[0]?.text) {
-      const choppedTitle = currentChat[0]?.text.split(" ");
-      const generatedTitle = `${choppedTitle[0]}...${choppedTitle
-        .slice(-2)
-        .join(" ")}`;
-      // console.log(generatedTitle);
-      // dispatch(setTodayChat({ title: generatedTitle, newChat: currentChat }));
-      dispatch(resetDisplayMenu());
-      dispatch(resetCurrentChat());
+    if (revisitTitle) {
+      //This is to check if the new chat is a revisited chat
+      addNewChatToHistory(revisitTitle, currentChat);
+      return;
+    } else if (currentChat[0]?.text) {
+      const generatedTitle = generateTitle(currentChat[0]?.text);
+      addNewChatToHistory(generatedTitle, currentChat);
+      return;
     } else {
       toast.error(
         "Current chat is empty, make some querries before requesting a new chat",
@@ -45,12 +50,23 @@ export function Menu() {
     }
   };
 
+  const handleResetHistory = () => {
+    // console.log(history.length > 1 ? "shdjfh" : "shay i told you");
+    dispatch(resetHistory());
+    // eslint-disable-next-line
+    location.reload();
+  };
+
   useEffect(() => {
-    const recentChat = todayChat.slice(0, 3);
-    const chatHistory = todayChat.slice(3);
+    setIsHistoryCleared(history.length > 1);
+
+    // group the chats
+    const recentChat = history.slice(0, 3);
+    const chatHistory = history.slice(3);
     setLongTimeAgo(chatHistory);
     setRecentChat(recentChat);
-    // dispatch(resetDisplayMenu());
+
+    return;
     // eslint-disable-next-line
   }, []);
   return (
@@ -66,24 +82,46 @@ export function Menu() {
         <Button.Secondary>{t("CREATE_NEW_CHATS")}</Button.Secondary>
       </motion.div>
 
-      <div className=" flexing-cols gap-[3rem] h-full md:h-[75%] mb-[3rem] md:mb-0 Customise-ScrollBar ">
-        <div className=" flexing-cols gap-[2rem] md:gap-[1rem] ">
-          <p>{t("RECENTLY")}</p>
-          <ul className=" flexing-cols gap-[1rem] md:gap-[1rem] ">
-            {recentChat.map((obj, idx) => (
-              <ChatHistoryElement key={idx} addBg={true} keyword={obj.title} />
-            ))}
-          </ul>
+      {/* // There is a better way of implemeting this, but the time for developement is limited. Anyways happy fixing :)=) // */}
+
+      {isHistoryCleared ? (
+        <div className=" flexing-cols gap-[3rem] h-full md:h-[75%] mb-[3rem] md:mb-0 Customise-ScrollBar ">
+          <div className=" flexing-cols gap-[2rem] md:gap-[1rem] ">
+            <p>{t("RECENTLY")}</p>
+            <ul className=" flexing-cols gap-[1rem] md:gap-[1rem] ">
+              {recentChat?.map((obj, idx) => (
+                <ChatHistoryElement
+                  key={idx}
+                  category={"recently"}
+                  index={idx}
+                  addBg={true}
+                  keyword={obj.title}
+                />
+              ))}
+            </ul>
+          </div>
+          {longTimeAgo && (
+            <div className=" flexing-cols gap-[2rem] md:gap-[1rem] ">
+              <p>{`${t("LONG_TIME_AGO")}`}</p>
+              <ul className=" flexing-cols gap-[1rem] md:gap-[1rem] ">
+                {longTimeAgo?.map((obj, idx) => (
+                  <ChatHistoryElement
+                    key={idx}
+                    category={"longTimeAgo"}
+                    index={idx}
+                    addBg={true}
+                    keyword={obj.title}
+                  />
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-        <div className=" flexing-cols gap-[2rem] md:gap-[1rem] ">
-          <p>{`${t("LONG_TIME_AGO")}`}</p>
-          <ul className=" flexing-cols gap-[1rem] md:gap-[1rem] ">
-            {longTimeAgo.map((obj, idx) => (
-              <ChatHistoryElement addBg={true} key={idx} keyword={obj.title} />
-            ))}
-          </ul>
-        </div>
-      </div>
+      ) : (
+        <p className=" greetings text-custom-white mt-[15%] pl-3 text-[1.5rem] ">
+          No History Recorded Yet🥲
+        </p>
+      )}
       <ul className=" hidden md:flex flex-col gap-5 h-[25%] cursor-pointer px-[2rem] text-[1.4rem] max-w-[12rem] overflow-hidden">
         <li
           onClick={() => handleLogout()}
@@ -103,6 +141,11 @@ export function Menu() {
           </div>
         </li>
       </ul>
+      {isHistoryCleared && (
+        <Button.Primary handleClick={handleResetHistory}>
+          {t("CLEAR_HISTORY")}
+        </Button.Primary>
+      )}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import "./../layouts.css";
 import { Outlet } from "react-router-dom";
@@ -9,20 +9,14 @@ import { useGetCurrentPage } from "../../hooks";
 import { Menu } from "./Menu";
 import { CardEffect } from "./CardEffect";
 import { HomeHeader } from "./HomeHeader";
-import { setDisplayMenu } from "../../redux/slices/homeSlice";
 
 function Home() {
   const location = useLocation();
   const userStatus = useSelector((state) => state.auth.userLogin);
-  const dispatch = useDispatch();
   const curLocation = useGetCurrentPage();
   const [disabledMenu, setDisableMenu] = useState(false);
-  const displayMenu = useSelector((state) => state.home.displayMenu);
+  const [showMenu, setShowMenu] = useState(false);
   const isScrolled = useIsWindowScrolled();
-
-  // useEffect(() => {
-  //   console.log("Page loaded, displayMenu:", displayMenu);
-  // }, []);
 
   const handleScrollToTop = () => {
     window.scrollTo({
@@ -35,24 +29,23 @@ function Home() {
     if (curLocation[0] === "chat-history") {
       setDisableMenu(!disabledMenu);
     } else {
-      dispatch(setDisplayMenu());
+      setShowMenu(!showMenu);
     }
   };
-  console.log(displayMenu);
 
   return userStatus ? (
     <div className="relative flex flex-col h-fit overflow-hidden w-full">
       <div
         className={` home-container flex md:gap-[2vw] w-fit md:w-full ${
-          displayMenu ? "translate-x-0" : "translate-x-[-90vw] md:translate-x-0"
+          showMenu ? "translate-x-0" : "translate-x-[-90vw] md:translate-x-0"
         } duration-700 h-full`}
       >
         {/* // Chat-history Menu // */}
-        <Menu />
+        <Menu setShowMenu={setShowMenu} />
         {/* // Children // */}
         <div
           className={` box flex flex-col relative h-fit w-screen md:w-[70vw] lg:w-[78vw] ${
-            displayMenu
+            showMenu
               ? "rotate-[-10deg] rounded-3xl md:rounded-none"
               : "rotate-0"
           } delay-500 duration-300`}
@@ -65,12 +58,11 @@ function Home() {
             <HomeHeader handleClick={handleClick} />
 
             <div className="flex flex-col justify-center items-center w-full max-w-[70rem]">
-              {/* <div className=' max-w-[2.6rem] '>Hello i am your friend</div> */}
               <Outlet />
             </div>
           </div>
           {/* // Effects start // */}
-          <CardEffect />
+          <CardEffect showMenu={showMenu} />
           {/* // Effects end // */}
         </div>
       </div>

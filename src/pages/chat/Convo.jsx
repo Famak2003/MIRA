@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LOGO from "./../../assets/mira logo.png";
 import MIC from "./../../assets/mic.png";
 import PLAY from "./../../assets/play.png";
@@ -16,18 +16,17 @@ export default function Convo({ idx, obj }) {
   const [showControls, setShowControls] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const currentSpeech = useSelector((state) => state.currentChat.currentSpeech);
+  // const speechState = useSelector((state) => state.currentChat.speechState);
+
+  // useEffect(() => {
+  //   if (speechState) {
+  //     setShowControls(false);
+  //   }
+  // }, []);
 
   const handleStartSpeech = (text) => {
     setShowControls(!showControls);
     startSpeech(text, currentSpeech);
-    // if ("speechSynthesis" in window) {
-    //   const speech = new SpeechSynthesisUtterance(text);
-    //   speech.lang = "en-US";
-    //   window.speechSynthesis.speak(speech);
-    //   return;
-    // }
-    // toast.error("Sorry, our speech module is not available in your browser😓");
-    // return null;
   };
 
   const handlePauseSpeech = () => {

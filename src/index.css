@@ -42,6 +42,10 @@ body {
   backdrop-filter: blur(0.2rem);
 }
 
+.greetings {
+  text-shadow: 2px 2px var(--custom-red);
+}
+
 @layer components {
   .generalPadding {
     @apply px-[2rem];

@@ -79,6 +79,7 @@ i18n
           LANGUAGE: `language`,
           RECENTLY: `Recently`,
           LONG_TIME_AGO: `Long time ago`,
+          CLEAR_HISTORY: `Clear history`,
         },
       },
       tr: {
@@ -110,6 +111,7 @@ i18n
           LANGUAGE: `Dil`,
           RECENTLY: `son zamanlarda`,
           LONG_TIME_AGO: `Uzun zaman önce`,
+          CLEAR_HISTORY: `geçmişi temizle`,
         },
       },
     },
