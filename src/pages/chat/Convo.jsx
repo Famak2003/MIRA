@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import LOGO from "./../../assets/mira logo.png";
 import MIC from "./../../assets/mic.png";
 import PLAY from "./../../assets/play.png";

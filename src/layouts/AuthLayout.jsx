@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 
 import GOOGLE from "./../assets/google.png";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { Form } from "antd";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
