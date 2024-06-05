@@ -1,5 +1,6 @@
 # StudyBot - An Engaging Chatbot for Students
 
+
 The primary objective of MIRA is to serve as an exceptional study companion for students, transforming the traditional study process into a more interactive and enjoyable experience. By integrating AI-driven responses, TTS capabilities, chat history, responsive design, and bilingual support, MIRA addresses the diverse needs of modern learners. It is designed to alleviate the challenges associated with conventional study methods, providing a supportive and engaging platform that fosters effective learning.
 
 ## Table of Contents
