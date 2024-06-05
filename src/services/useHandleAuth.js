@@ -3,8 +3,7 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setUserLogin } from "../redux/slices/authSlice";
-import Login from "../fireFunctions/Login";
-import Signup from "../fireFunctions/Signup";
+import { Login, Signup } from "../fireFunctions";
 
 function useHandleAuth() {
   const dispatch = useDispatch();

@@ -1,7 +1,4 @@
-// import { useSelector } from "react-redux";
-
 export function CardEffect({ showMenu }) {
-  // const displayMenu = useSelector((state) => state.home.displayMenu);
   return (
     <>
       <div

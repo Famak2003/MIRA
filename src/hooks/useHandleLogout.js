@@ -7,15 +7,22 @@ import toast from "react-hot-toast";
 export const useHandleLogout = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
+
   const callLogout = async () => {
+    // Show loading toast
+    const loadingToast = toast.loading("Signing out...");
     try {
       const response = await LogOut();
-      console.log("response from logout", response);
+      console.log(response && "see you later🙂");
       nav("/");
       dispatch(setUserLogin(false));
-      toast.success("Logout Successful see you soon!");
+      toast.success(`Signed out successful see you soon!`, {
+        id: loadingToast,
+      });
     } catch (error) {
-      toast.error("Error while logging out");
+      toast.error("Error while logging out", {
+        id: loadingToast,
+      });
       console.log(error.message);
     }
   };

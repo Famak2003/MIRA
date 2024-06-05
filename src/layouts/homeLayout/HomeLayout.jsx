@@ -67,7 +67,7 @@ function Home() {
       >
         {/* // Chat-history Menu // */}
         <Menu setShowMenu={setShowMenu} />
-        {/* // Children // */}
+        {/* // Outlet // */}
         <div
           className={` box flex flex-col relative h-fit w-screen md:w-[70vw] lg:w-[78vw] ${
             showMenu

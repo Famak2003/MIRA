@@ -47,18 +47,25 @@ export function HomeHeader({ handleClick }) {
       </button>
       <div className=" flex gap-4 items-center justify-center">
         <h1 className=" text-[2rem]">MIRA</h1>
-        <figure className=" flex flex-col gap-2 w-full h-fit">
-          <img
-            className=" max-w-[12rem] object-contain rounded-lg"
-            src={LAB1}
-            alt="near east lab"
-          />
-          <img
-            className=" max-w-[12rem] object-contain rounded-lg"
-            src={LAB2}
-            alt="near east lab"
-          />
-        </figure>
+
+        <a
+          href="https://neu.edu.tr/?lang=en"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <figure className=" flex flex-col gap-2 w-full h-fit">
+            <img
+              className=" max-w-[12rem] object-contain rounded-lg"
+              src={LAB1}
+              alt="near east lab"
+            />
+            <img
+              className=" max-w-[12rem] object-contain rounded-lg"
+              src={LAB2}
+              alt="near east lab"
+            />
+          </figure>
+        </a>
       </div>
       <div className=" relative block md:hidden">
         <button

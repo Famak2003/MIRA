@@ -52,7 +52,9 @@ function Auth() {
       <Translator />
       <div className=" flex flex-col gap-[5rem] sm:gap-[3.5rem] text-center pb-[5rem] pt-[5rem] sm:pt-[2rem] w-[100%] max-w-[70rem] ">
         <div className="w-full">
-          <h1 className=" text-[5.2rem] ">MIRA</h1>
+          <Link to={"/"}>
+            <h1 className=" text-[5.2rem] ">MIRA</h1>
+          </Link>
           <p className=" text-[1.4rem]">{`${pageContent?.subHeader}`}</p>
         </div>
         <div className=" flex flex-col justify-center items-center gap-[3rem] sm:gap-[2.5rem] w-full ">
