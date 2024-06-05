@@ -143,5 +143,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
-
-Feel free to customize this README file to better fit your project's specifics and requirements. Happy coding!
