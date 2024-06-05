@@ -8,8 +8,7 @@ import { useEffect, useState } from "react";
 
 import { useTranslation } from "react-i18next";
 import Translator from "../components/ui/Translator";
-import useHandleAuth from "../services/useHandleAuth";
-import useGoogleServices from "../services/useGoogleServices";
+import { useGoogleServices, useHandleAuth } from "../services";
 
 function Auth() {
   const { t } = useTranslation();
