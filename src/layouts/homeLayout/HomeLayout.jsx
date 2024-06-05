@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./../layouts.css";
 import { Outlet } from "react-router-dom";
 import ARROWUP from "./../../assets/arrow-up.png";
@@ -17,6 +17,31 @@ function Home() {
   const [disabledMenu, setDisableMenu] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const isScrolled = useIsWindowScrolled();
+
+  useEffect(() => {
+    // Create a MediaQueryList object
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+    // Define the callback function that runs when the media query status changes
+    const handleScreenChange = (event) => {
+      if (event.matches) {
+        setShowMenu(false);
+      }
+    };
+
+    // Add an event listener for changes to the media query status
+    mediaQuery.addEventListener("change", handleScreenChange);
+
+    // Initial check in case the screen size is already greater than 768px when the component mounts
+    if (mediaQuery.matches) {
+      setShowMenu(false);
+    }
+
+    // Cleanup function to remove the event listener when the component unmounts
+    return () => {
+      mediaQuery.removeEventListener("change", handleScreenChange);
+    };
+  }, []);
 
   const handleScrollToTop = () => {
     window.scrollTo({

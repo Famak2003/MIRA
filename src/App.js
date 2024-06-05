@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Toaster position={"top-right"} />
-      <div className="App h-fit max-w-[150rem] ">
+      <div className="App h-fit max-w-[150rem] Customise-ScrollBar ">
         <AnimatePresence mode="wait">
           <RouterProvider router={router} />
         </AnimatePresence>

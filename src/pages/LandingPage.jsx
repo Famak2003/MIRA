@@ -8,9 +8,8 @@ function LandingPage() {
   const { t } = useTranslation();
   return (
     <>
-      <Translator />
-
-      <div className=" h-[100svh] mobile:h-[100vh] flex flex-col gap-4 justify-center items-center bg-transparent  ">
+      <div className=" relative h-[100svh] mobile:h-[100vh] flex flex-col gap-4 justify-center items-center bg-transparent  ">
+        <Translator />
         <figure className="h-[63%] w-full ">
           <img
             className=" h-full w-full object-cover "

@@ -15,7 +15,7 @@ function Translator({ disableFix = true }) {
     <div
       onChange={(e) => e.target.value}
       className={` ${
-        disableFix ? "fixed left-[3rem] top-2" : ""
+        disableFix ? "absolute left-[3rem] top-2" : ""
       } flex gap-2 p-2 bg-transparent border-0 `}
     >
       <motion.button

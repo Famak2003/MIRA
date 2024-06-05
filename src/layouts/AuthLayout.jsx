@@ -124,9 +124,8 @@ function Auth() {
 
   return (
     <>
-      <Translator />
-
-      <div className=" flex flex-col justify-center items-center generalPadding  duration-200">
+      <div className="relative flex flex-col justify-center items-center generalPadding  duration-200">
+        <Translator />
         <div className=" flex flex-col gap-[5rem] sm:gap-[3.5rem] text-center pb-[5rem] pt-[5rem] sm:pt-[2rem] w-[100%] max-w-[70rem] ">
           <div className="w-full">
             <h1 className=" text-[5.2rem] ">MIRA</h1>

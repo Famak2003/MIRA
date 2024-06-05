@@ -58,7 +58,7 @@ export function Menu({ setShowMenu }) {
   };
 
   useEffect(() => {
-    setIsHistoryCleared(history.length > 1);
+    setIsHistoryCleared(history.length > 0);
 
     // group the chats
     const recentChat = history.slice(0, 3);
@@ -71,7 +71,9 @@ export function Menu({ setShowMenu }) {
   }, []);
   return (
     <div className="Customise-ScrollBar flex flex-col gap-[2rem] w-[90vw] md:w-[28vw] lg:w-[20vw] bg-custom-black pt-[5rem] md:pt-[2rem] pb-[2rem] generalPadding h-screen overflow-y-scroll  ">
-      <h1 className=" text-[3rem] z-[2] text-shadow">{t("CHAT_HISTORY")}</h1>
+      <h1 className=" text-[2.5rem] lg:text-[3rem] z-[2] text-shadow">
+        {t("CHAT_HISTORY")}
+      </h1>
       <motion.div
         variants={selectionVariant}
         whileHover={"hoverEffect"}
@@ -84,30 +86,16 @@ export function Menu({ setShowMenu }) {
 
       {/* // There is a better way of implemeting this, but the time for developement is limited. Anyways happy fixing :)=) // */}
 
-      {isHistoryCleared ? (
-        <div className=" flexing-cols gap-[3rem] h-full md:h-[75%] mb-[3rem] md:mb-0 Customise-ScrollBar ">
-          <div className=" flexing-cols gap-[2rem] md:gap-[1rem] ">
-            <p>{t("RECENTLY")}</p>
-            <ul className=" flexing-cols gap-[1rem] md:gap-[1rem] ">
-              {recentChat?.map((obj, idx) => (
-                <ChatHistoryElement
-                  key={idx}
-                  category={"recently"}
-                  index={idx}
-                  addBg={true}
-                  keyword={obj.title}
-                />
-              ))}
-            </ul>
-          </div>
-          {longTimeAgo && (
+      <div className=" flexing-cols gap-[3rem] h-full md:h-[75%] mb-[3rem] md:mb-0 Customise-ScrollBar ">
+        {isHistoryCleared ? (
+          <>
             <div className=" flexing-cols gap-[2rem] md:gap-[1rem] ">
-              <p>{`${t("LONG_TIME_AGO")}`}</p>
+              <p>{t("RECENTLY")}</p>
               <ul className=" flexing-cols gap-[1rem] md:gap-[1rem] ">
-                {longTimeAgo?.map((obj, idx) => (
+                {recentChat?.map((obj, idx) => (
                   <ChatHistoryElement
                     key={idx}
-                    category={"longTimeAgo"}
+                    category={"recently"}
                     index={idx}
                     addBg={true}
                     keyword={obj.title}
@@ -115,13 +103,29 @@ export function Menu({ setShowMenu }) {
                 ))}
               </ul>
             </div>
-          )}
-        </div>
-      ) : (
-        <p className=" greetings text-custom-white mt-[15%] pl-3 text-[1.5rem] ">
-          No History Recorded Yet🥲
-        </p>
-      )}
+            {longTimeAgo.length > 0 && (
+              <div className=" flexing-cols gap-[2rem] md:gap-[1rem] ">
+                <p>{`${t("LONG_TIME_AGO")}`}</p>
+                <ul className=" flexing-cols gap-[1rem] md:gap-[1rem] ">
+                  {longTimeAgo?.map((obj, idx) => (
+                    <ChatHistoryElement
+                      key={idx}
+                      category={"longTimeAgo"}
+                      index={idx}
+                      addBg={true}
+                      keyword={obj.title}
+                    />
+                  ))}
+                </ul>
+              </div>
+            )}
+          </>
+        ) : (
+          <p className=" greetings text-custom-white mt-[15%] pl-3 text-[1.5rem] ">
+            No History Recorded Yet🥲
+          </p>
+        )}
+      </div>
       <ul className=" hidden md:flex flex-col gap-5 h-[25%] cursor-pointer px-[2rem] text-[1.4rem] max-w-[12rem] overflow-hidden">
         <li
           onClick={() => handleLogout()}
@@ -142,9 +146,16 @@ export function Menu({ setShowMenu }) {
         </li>
       </ul>
       {isHistoryCleared && (
-        <Button.Primary handleClick={handleResetHistory}>
-          {t("CLEAR_HISTORY")}
-        </Button.Primary>
+        <motion.div
+          className=" z-[2] flex flex-col gap-[2rem] w-[70%] md:w-[100%]"
+          variants={selectionVariant}
+          whileHover={"hoverEffect"}
+          whileTap={"clickEffect"}
+        >
+          <Button.Secondary handleClick={handleResetHistory}>
+            {t("CLEAR_HISTORY")}
+          </Button.Secondary>
+        </motion.div>
       )}
     </div>
   );

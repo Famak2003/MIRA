@@ -50,7 +50,7 @@ function ChatHistoryElement({
       onClick={() => {
         handleVistHistory(index);
       }}
-      className={` flex justify-between gap-[1rem] items-center h-[5rem] md:h-[4rem] w-full ${
+      className={` flex justify-between gap-[1rem] items-center h-[5rem] md:h-[4rem] w-[70%] md:w-full ${
         addBg && "bg-charcoal-gray"
       } rounded-2xl px-[1rem] py-[.7rem] `}
     >
