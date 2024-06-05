@@ -54,7 +54,7 @@ function Chat() {
   }, [conversation]);
 
   return (
-    <div className=" flex-auto flex flex-col justify-between gap-[1rem] w-full h-[85svh] md:h-[93svh] ">
+    <div className=" flex-auto flex flex-col justify-between gap-[1rem] w-full h-[85svh] md:h-[88svh] ">
       <ul className=" Customise-ScrollBar w-full flex flex-col gap-[3rem] overflow-y-scroll generalPadding h-full  ">
         {conversation.map((obj, idx) => (
           <Convo key={idx} idx={idx} obj={obj} />
